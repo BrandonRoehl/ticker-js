@@ -1,13 +1,17 @@
 // add on load
-var tickers = [];
-document.addEventListener("DOMContentLoaded", function(){
-    var elements = document.getElementsByClassName('ticker-js');
-    for (var i = 0; i < elements.length; i++) {
-        tickers.push(new Ticker(elements[i]));
-    }
-});
+
 
 class Ticker {
+    static init(klass) {
+        if (klass == undefined) {
+            klass = 'ticker-js';
+        }
+        document.tickers = [];
+        var elements = document.getElementsByClassName(klass);
+        for (var i = 0; i < elements.length; i++) {
+            document.tickers.push(new Ticker(elements[i]));
+        }
+    }
     constructor(element, time) {
         this.element = element;
         this.value = 0;
