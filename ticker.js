@@ -14,6 +14,14 @@ class Ticker {
     }
     constructor(element, time) {
         this.element = element;
+        // Fail creation with a bad element and throw an error
+        if (element.dataset.url == null) {
+            throw new Error('Ticker element missing data-url');
+        }
+        if (element.dataset.value == null) {
+            throw new Error('Ticker element missing data-value');
+        }
+
         this.value = 0;
         this.display = 0;
         var ticker = this;
