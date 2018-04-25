@@ -38,7 +38,7 @@ class Ticker {
         this.display = 0;
         var shadow;
         if (element.attachShadow) {
-            shadow = element.attachShadow({mode: 'open'});
+            shadow = element.attachShadow({mode: 'closed'});
         } else {
             shadow = element;
         }
@@ -78,7 +78,6 @@ class Ticker {
                 var num = (ticker.value - ticker.display).toString().length - 2;
                 if (num < 0) num = 0;
                 num = Math.pow(10, num);
-                console.log(num);
 
                 if (ticker.display < ticker.value) {
                     ticker.display += num;
@@ -87,7 +86,7 @@ class Ticker {
                 } else {
                     clearInterval(ticker.displayInterval);
                     ticker.displayInterval = null;
-                    console.log("running");
+                    console.log("Completed Refresh");
                 }
                 ticker.print();
             }, 10);
