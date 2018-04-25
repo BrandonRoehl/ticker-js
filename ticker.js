@@ -1,15 +1,25 @@
-// add on load
+//
+//  Ticker.js
+//
+//
+//  Created by Brandon Roehl on 4/24/18.
+//
 
 
 class Ticker {
-    static init(klass, time) {
-        if (klass == undefined) {
-            klass = 'ticker-js';
+    static init(e, time) {
+        if (e == null) {
+            e = document.getElementsByClassName('ticker-js');
         }
         document.tickers = [];
-        var elements = document.getElementsByClassName(klass);
-        for (var i = 0; i < elements.length; i++) {
-            document.tickers.push(new Ticker(elements[i], time));
+        if (e instanceof HTMLCollection) {
+            for (var i = 0; i < e.length; i++) {
+                document.tickers.push(new Ticker(e[i], time));
+            }
+        } else if (e instanceof HTMLElement) {
+            document.tickers.push(new Ticker(e, time));
+        } else {
+            throw new Error('Not an instance of HTMLCollection or HTMLElement');
         }
     }
     constructor(element, time) {
