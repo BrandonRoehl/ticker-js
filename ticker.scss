@@ -5,13 +5,13 @@
 //  Created by Brandon Roehl on 4/24/18.
 //
 
-.ticker-js {
+ticker {
     font-size: 24pt;
 }
 
 $radius: 0.25em;
 
-.tjs-num {
+.tjs-num, .tjs-com {
     font-family: "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
     color: white;
     margin: $radius / 2;
