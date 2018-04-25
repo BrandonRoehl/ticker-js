@@ -45,17 +45,22 @@ class Ticker {
         var ticker = this;
         if (this.displayInterval == null) {
             this.displayInterval = setInterval(function () {
+                var num = (ticker.value - ticker.display).toString().length - 2;
+                if (num < 0) num = 0;
+                num = Math.pow(10, num);
+                console.log(num);
+
                 if (ticker.display < ticker.value) {
-                    ticker.display += 1;
+                    ticker.display += num;
                 } else if (ticker.display > ticker.value) {
-                    ticker.display -= 1;
+                    ticker.display -= num;
                 } else {
                     clearInterval(ticker.displayInterval);
                     ticker.displayInterval = null;
                     console.log("running");
                 }
                 ticker.print();
-            }, 1);
+            }, 10);
         }
     }
     print() {
