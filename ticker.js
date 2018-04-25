@@ -4,8 +4,11 @@
 //
 //  Created by Brandon Roehl on 4/24/18.
 //
+document.addEventListener("DOMContentLoaded", function(){
+    Ticker.init();
+});
 
-
+console.log(document.currentScript);
 class Ticker {
     static init(e = document.getElementsByClassName('ticker-js'), time) {
         document.tickers = [];
@@ -31,6 +34,20 @@ class Ticker {
         this.element = element;
         this.value = 0;
         this.display = 0;
+        var shadow;
+        if (element.attachShadow) {
+            shadow = element.attachShadow({mode: 'open'});
+        } else {
+            shadow = element;
+        }
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        // link.href.substring(0, link.href.lastIndexOf("/"));
+        link.href = "./ticker.css";
+        shadow.appendChild(link);
+        this.root = document.createElement('span');
+        shadow.appendChild(this.root);
+
         var ticker = this;
         ticker.get();
         if (time != 0) {
@@ -77,12 +94,12 @@ class Ticker {
     }
     print() {
         var string = this.display.toLocaleString();
-        this.element.innerHTML = '';
+        this.root.innerHTML = '';
         for (var i = 0; i < string.length; i++) {
             var child = document.createElement('span');
             child.innerHTML = string.charAt(i);
             child.className = 'tjs-num';
-            this.element.appendChild(child);
+            this.root.appendChild(child);
         }
     }
 }
