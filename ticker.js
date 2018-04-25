@@ -7,10 +7,7 @@
 
 
 class Ticker {
-    static init(e, time) {
-        if (e == null) {
-            e = document.getElementsByClassName('ticker-js');
-        }
+    static init(e = document.getElementsByClassName('ticker-js'), time) {
         document.tickers = [];
         if (e instanceof HTMLCollection) {
             for (var i = 0; i < e.length; i++) {
@@ -22,8 +19,7 @@ class Ticker {
             throw new Error('Not an instance of HTMLCollection or HTMLElement');
         }
     }
-    constructor(element, time) {
-        this.element = element;
+    constructor(element, time = 10000) {
         // Fail creation with a bad element and throw an error
         if (element.dataset.url == null) {
             throw new Error('Ticker element missing data-url');
@@ -32,13 +28,11 @@ class Ticker {
             throw new Error('Ticker element missing data-value');
         }
 
+        this.element = element;
         this.value = 0;
         this.display = 0;
         var ticker = this;
         ticker.get();
-        if (time == undefined) {
-            time = 10000;
-        }
         if (time != 0) {
             this.refreshInterval = setInterval(function () {
                 ticker.get();
