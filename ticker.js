@@ -5,9 +5,12 @@
 //  Created by Brandon Roehl on 4/24/18.
 //
 
+document.addEventListener("DOMContentLoaded", function(){
+    Ticker.init();
+});
 
 class Ticker {
-    static init(e = document.getElementsByClassName('ticker-js'), time) {
+    static init(e = document.getElementsByTagName('ticker'), time) {
         document.tickers = [];
         if (e instanceof HTMLCollection) {
             for (var i = 0; i < e.length; i++) {
@@ -60,7 +63,6 @@ class Ticker {
                 var num = (ticker.value - ticker.display).toString().length - 2;
                 if (num < 0) num = 0;
                 num = Math.pow(10, num);
-                console.log(num);
 
                 if (ticker.display < ticker.value) {
                     ticker.display += num;
@@ -69,7 +71,6 @@ class Ticker {
                 } else {
                     clearInterval(ticker.displayInterval);
                     ticker.displayInterval = null;
-                    console.log("running");
                 }
                 ticker.print();
             }, 10);
@@ -81,8 +82,15 @@ class Ticker {
         for (var i = 0; i < string.length; i++) {
             var child = document.createElement('span');
             child.innerHTML = string.charAt(i);
-            child.className = 'tjs-num';
+            if (child.innerHTML === ',') {
+                child.className = 'tjs-com'
+            } else {
+                child.className = 'tjs-num';
+            }
             this.element.appendChild(child);
         }
+    }
+    stop() {
+        clearInterval(this.refreshInterval);
     }
 }
