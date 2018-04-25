@@ -8,7 +8,6 @@ Include the `js` and `css` file
 
 ```html
 <script type="text/javascript" src="./ticker.js"></script>
-<link rel="stylesheet" href="./ticker.css">
 ```
 
 Create an element that has the `ticker-js`, `data-url` and `data-value` set
