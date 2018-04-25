@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function(){
     Ticker.init();
 });
 
-console.log(document.currentScript);
+document.ticker_css_location = document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf("/"));
+document.ticker_css_location += "/ticker.css";
+
 class Ticker {
     static init(e = document.getElementsByClassName('ticker-js'), time) {
         document.tickers = [];
@@ -42,8 +44,7 @@ class Ticker {
         }
         var link = document.createElement('link');
         link.rel = "stylesheet";
-        // link.href.substring(0, link.href.lastIndexOf("/"));
-        link.href = "./ticker.css";
+        link.href = document.ticker_css_location;
         shadow.appendChild(link);
         this.root = document.createElement('span');
         shadow.appendChild(this.root);
