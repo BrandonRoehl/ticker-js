@@ -3,11 +3,17 @@
     <head>
         <title>Ticker</title>
         <script type="text/javascript" src="./ticker.js"></script>
-        
-        <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(){
-            Ticker.init();
-        });
+        <link rel="stylesheet" href="./ticker.css">
+
+        <style media="screen">
+            .ticker-js {
+                font-size: 24pt;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                Ticker.init();
+            });
         </script>
     </head>
     <body>

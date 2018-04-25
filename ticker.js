@@ -2,14 +2,14 @@
 
 
 class Ticker {
-    static init(klass) {
+    static init(klass, time) {
         if (klass == undefined) {
             klass = 'ticker-js';
         }
         document.tickers = [];
         var elements = document.getElementsByClassName(klass);
         for (var i = 0; i < elements.length; i++) {
-            document.tickers.push(new Ticker(elements[i]));
+            document.tickers.push(new Ticker(elements[i], time));
         }
     }
     constructor(element, time) {
@@ -43,18 +43,29 @@ class Ticker {
     }
     refreshDisplay() {
         var ticker = this;
-        this.displayInterval = setInterval(function () {
-            if (ticker.display < ticker.value) {
-                ticker.display += 1;
-            } else if (ticker.display > ticker.value) {
-                ticker.display -= 1;
-            } else {
-                clearInterval(ticker.displayInterval);
-            }
-            ticker.print();
-        }, 1);
+        if (this.displayInterval == null) {
+            this.displayInterval = setInterval(function () {
+                if (ticker.display < ticker.value) {
+                    ticker.display += 1;
+                } else if (ticker.display > ticker.value) {
+                    ticker.display -= 1;
+                } else {
+                    clearInterval(ticker.displayInterval);
+                    ticker.displayInterval = null;
+                    console.log("running");
+                }
+                ticker.print();
+            }, 1);
+        }
     }
     print() {
-        this.element.innerHTML = this.display.toLocaleString();
+        var string = this.display.toLocaleString();
+        this.element.innerHTML = '';
+        for (var i = 0; i < string.length; i++) {
+            var child = document.createElement('span');
+            child.innerHTML = string.charAt(i);
+            child.className = 'tjs-num';
+            this.element.appendChild(child);
+        }
     }
 }
