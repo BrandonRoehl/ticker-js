@@ -11,18 +11,28 @@ document.addEventListener("DOMContentLoaded", function(){
 
 class Ticker {
     static init(e = document.getElementsByTagName('ticker')) {
-        document.tickers = [];
+        // Stop previous tickers if they exist
         if (e instanceof HTMLCollection) {
             for (var i = 0; i < e.length; i++) {
-                document.tickers.push(new Ticker(e[i]));
+                new Ticker(e[i]);
             }
         } else if (e instanceof HTMLElement) {
-            document.tickers.push(new Ticker(e));
+            new Ticker(e);
         } else {
             throw new Error('Not an instance of HTMLCollection or HTMLElement');
         }
     }
     constructor(element) {
+        if (!(element instanceof HTMLElement)) {
+            throw new Error('Not an instance of HTMLElement');
+        }
+        var ticker = this;
+        if (element.ticker == undefined) {
+            element.ticker = this;
+            ticker.element = element;
+        } else {
+            ticker = element.ticker;
+        }
         // Fail creation with a bad element and throw an error
         if (element.dataset.url == null) {
             throw new Error('Ticker element missing data-url');
@@ -33,16 +43,15 @@ class Ticker {
         var time = element.dataset.refreshInterval;
         if (time === undefined) time = 1000;
 
-        this.element = element;
-        this.value = 0;
-        this.display = 0;
-        var ticker = this;
+        ticker.value = 0;
+        ticker.display = 0;
         ticker.get();
         if (time != 0) {
             this.refreshInterval = setInterval(function () {
                 ticker.get();
             }, time);
         }
+        return ticker;
     }
     get() {
         var xhr = new XMLHttpRequest();
