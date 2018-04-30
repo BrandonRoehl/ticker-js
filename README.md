@@ -18,8 +18,9 @@ Include the `js` and `css` file
     - **default**: 10000
     - **0**: Don't refresh I will manually call `get()`
 
+**Example**
 ```html
-<ticker data-url="./data.json" data-value="count" data-refresh-interval="1000"></ticker>
+<ticker data-url="./data.json" data-value="count"></ticker>
 ```
 
 Then to initialize the tickers and start the request you have a couple options.

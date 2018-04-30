@@ -47,7 +47,8 @@ class Ticker {
         ticker.display = 0;
         ticker.get();
         if (time != 0) {
-            this.refreshInterval = setInterval(function () {
+            clearInterval(ticker.refreshInterval);
+            ticker.refreshInterval = setInterval(function () {
                 ticker.get();
             }, time);
         }
