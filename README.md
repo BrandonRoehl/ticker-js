@@ -31,7 +31,9 @@ Then to initialize the tickers and start the request you have a couple options.
 **NOTE**: This is only necessary if a `<ticker/>` has been added to the page after `DOMContentLoaded`
 ```javascript
 // common
-Ticker.init(); // initialize all ticker-js tickers they refresh every 10000ms
+Ticker.init(); // initialize all ticker element
+// Same as
+// Ticker.init(document.getElementsByTagName('ticker'))
 
 // uncommon
 Ticker.init(document.getElementsByClassName('custom-class')); // initialize all custom-class tickers
