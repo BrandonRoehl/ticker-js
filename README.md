@@ -10,9 +10,6 @@ Include the `js` and `css` file
 <link rel="stylesheet" href="./ticker.css">
 ```
 
-Create an element that has the `ticker-js`, `data-url` and `data-value` set
-wherever you want the ticker to be displayed
-
 ## Usage
 
 - `data-url` should be the route to a JSON file that is updated with the new value
