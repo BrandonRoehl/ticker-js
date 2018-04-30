@@ -6,7 +6,8 @@ ticker {
   color: white;
   margin: 0.125em;
   padding: 0.125em 0.25em;
-  position: relative; }
+  position: relative;
+  z-index: 1; }
   .tjs-num::before, .tjs-num::after, .tjs-com::before, .tjs-com::after {
     content: "";
     position: absolute;

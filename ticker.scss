@@ -17,6 +17,7 @@ $radius: 0.25em;
     margin: $radius / 2;
     padding: ($radius / 2) $radius;
     position: relative;
+    z-index: 1;
     &::before, &::after {
         content: "";
         position: absolute;
