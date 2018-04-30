@@ -7,6 +7,7 @@
 
 ticker {
     font-size: 24pt;
+    display: block;
 }
 
 $radius: 0.25em;
@@ -18,7 +19,6 @@ $radius: 0.25em;
     padding: ($radius / 2) $radius;
     position: relative;
     z-index: 1;
-    display: block;
     &::before, &::after {
         content: "";
         position: absolute;

@@ -1,5 +1,6 @@
 ticker {
-  font-size: 24pt; }
+  font-size: 24pt;
+  display: block; }
 
 .tjs-num, .tjs-com {
   font-family: "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
@@ -7,8 +8,7 @@ ticker {
   margin: 0.125em;
   padding: 0.125em 0.25em;
   position: relative;
-  z-index: 1;
-  display: block; }
+  z-index: 1; }
   .tjs-num::before, .tjs-num::after, .tjs-com::before, .tjs-com::after {
     content: "";
     position: absolute;
