@@ -7,7 +7,8 @@ ticker {
   margin: 0.125em;
   padding: 0.125em 0.25em;
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  display: block; }
   .tjs-num::before, .tjs-num::after, .tjs-com::before, .tjs-com::after {
     content: "";
     position: absolute;
